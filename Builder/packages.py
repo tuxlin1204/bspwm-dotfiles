@@ -117,6 +117,7 @@ DEV_PACKAGES = [
     "ipython",  # Интерактивный режим Python
     "cloc",  # Посчитать количество строк кода
     "hexyl",  # Hex дампер
+    "remmina freerdp", # RDP клиент
 ]
 
 AUR_PACKAGES = [
