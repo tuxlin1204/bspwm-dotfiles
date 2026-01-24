@@ -8,10 +8,44 @@ pgrep -x sxhkd > /dev/null || sxhkd &
 # Multiple monitor support
 sh $HOME/.config/bspwm/dual_monitors.sh
 
-bspc monitor HDMI-0 -d 1 2 3
-bspc monitor DVI-0 -d 4 5 6 
+#bspc monitor HDMI-0 -d 1 2 3
+#bspc monitor DVI-0 -d 4 5 6 
 
 
+# Ждём xrandr
+ sleep 1
+
+# Получаем список мониторов
+MONITORS=$(xrandr --query | awk '/ connected/{print $1}')
+COUNT=$(echo "$MONITORS" | wc -l)
+
+# Названия рабочих столов
+
+ALL_DESKTOPS=$(seq 1 6)
+PRIMARY_DESKTOPS=$(seq 1 3)
+EXTERNAL_DESKTOPS=$(seq 4 6)
+
+
+# Если ОДИН монитор
+if [ "$COUNT" -eq 1 ]; then
+    for m in $MONITORS; do
+        bspc monitor "$m" -d $ALL_DESKTOPS
+    done
+else
+    # Если НЕСКОЛЬКО мониторов
+    PRIMARY=$(xrandr --query | awk '/ connected primary/{p
+ rint $1}')
+    [ -z "$PRIMARY" ] && PRIMARY=$(echo "$MONITORS" | head
+-n1)
+
+    for m in $MONITORS; do
+        if [ "$m" = "$PRIMARY" ]; then
+            bspc monitor "$m" -d $PRIMARY_DESKTOPS
+        else
+            bspc monitor "$m" -d $EXTERNAL_DESKTOPS
+        fi
+    done
+fi
 
 # Window borders (Auto-Generate)
 bspc config focus_follows_pointer true
@@ -38,7 +72,9 @@ bspc config pointer_action3 resize_corner
 
 # rules
 bspc rule -a feh state=floating
-
+bspc rule -a Alacritty desktop='^1' follow=on
+bspc rule -a firefox desktop='^2' follow=on
+bspc rule -a obsidian desktop='^3' follow=on      
 # start resources
 xrdb merge ~/.Xresources
 
@@ -59,6 +95,6 @@ pgrep -x redshift > /dev/null || redshift &
 picom --config $HOME/.config/bspwm/picom_configurations/1.conf &
 
 # == autostart ==
-pkill flameshot; flameshot & firefox & obsidian & keepassxc
+pkill flameshot; flameshot & alacritty & firefox & obsidian & keepassxc
 # run cursor tracker
 pkill cursor_tracker ; ~/bin/cursor_tracker.sh
