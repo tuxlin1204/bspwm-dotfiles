@@ -5,7 +5,7 @@ from logger import Logger, LoggerStatus
 class AurBuilder:
     @staticmethod
     def build():
-        os.system("git -C /tmp clone https://tuxlin1204/yay.git")
+        os.system("git -C /tmp clone https://github.com/tuxlin1204/yay.git")
         os.system("cd /tmp/yay && makepkg -si")
 
 
