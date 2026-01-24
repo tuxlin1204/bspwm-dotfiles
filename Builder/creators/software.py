@@ -5,9 +5,19 @@ from logger import Logger, LoggerStatus
 class AurBuilder:
     @staticmethod
     def build():
-        os.system("git -C /tmp clone https://aur.archlinux.org/yay.git")
-        os.system("cd /tmp/yay && makepkg -si")
+        if os.geteuid() == 0:
+            raise RuntimeError("AUR packages must not be built as root")
 
+        subprocess.run(
+            ["git", "clone", "https://aur.archlinux.org/yay.git", "/tmp/yay"],
+            check=True,
+        )
+
+        subprocess.run(
+            ["makepkg", "-si", "--noconfirm"],
+            cwd="/tmp/yay",
+            check=True,
+        )
 
 class FirefoxCustomize:
     @staticmethod
