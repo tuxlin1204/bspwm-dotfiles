@@ -43,6 +43,14 @@ class SystemConfiguration:
         Logger.add_record("[+] Installed Dev Dependencies", status=LoggerStatus.SUCCESS)
         SystemConfiguration.__install_pacman_package(packages.DEV_PACKAGES)
 
+
+    @staticmethod
+    def __start_option_5():
+        Logger.add_record("[+] Configuring GRUB", status=LoggerStatus.SUCCESS)
+        GrubTheme.install()
+
+
+
     @staticmethod
     def __install_pacman_package(package_names: list):
         for package in package_names:
