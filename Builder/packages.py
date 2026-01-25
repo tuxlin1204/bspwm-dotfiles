@@ -1,5 +1,6 @@
 
 BASE_PACKAGES = [
+    "base-devel", # Базовые пакеты для сборки yay
     "ffmpegthumbnailer", "tumbler",  # Создает миниатюры в thunar
     "lsd",  # Расширенная версия ls
     "alacritty",  # Эмулятор терминала
@@ -130,7 +131,7 @@ AUR_PACKAGES = [
     "arttime-git",  # Консольный таймер и секундомер
     "bluetuith",  # TUI менеджер управления bluetooth
     "rofi-bluetooth-git",  # Управление bluetooth в rofi
-    "anki",  # Программа для запоминания материала через карточки
+    #"anki",  # Программа для запоминания материала через карточки
     "light",  # TODO: Нужен для управления яркостью amd (bin/brightness)
 ]
 

@@ -6,7 +6,8 @@ class AurBuilder:
     @staticmethod
     def build():
         os.system("git -C /tmp clone https://aur.archlinux.org/yay.git")
-        os.system("cd /tmp/yay && sudo -u $SUDO_USER makepkg -si")
+        os.system("cd /tmp/yay && makepkg -si")
+
 class FirefoxCustomize:
     @staticmethod
     def build():
