@@ -5,7 +5,6 @@ from logger import Logger, LoggerStatus
 from creators.software import AurBuilder, FirefoxCustomize
 from creators.patches import PatchSystemBugs
 from creators.daemons import Daemons
-from creators.bootloader import GrubTheme
 
 
 class SystemConfiguration:
@@ -16,7 +15,6 @@ class SystemConfiguration:
         if args[1]: SystemConfiguration.__start_option_2()
         if args[2]: SystemConfiguration.__start_option_3()
         if args[3]: SystemConfiguration.__start_option_4()
-        if args[4]: SystemConfiguration.__start_option_5()
 
         Daemons.enable_all_daemons()
         PatchSystemBugs.enable_all_patches()
@@ -76,8 +74,4 @@ class SystemConfiguration:
         os.system("cp xinitrc ~/.xinitrc")
         os.system("cp -r bin/ ~/")
 
-    @staticmethod
-    def __start_option_5():
-        Logger.add_record("[+] Configuring GRUB", status=LoggerStatus.SUCCESS)
-        GrubTheme.install()
-
+    
