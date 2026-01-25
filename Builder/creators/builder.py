@@ -5,7 +5,7 @@ from logger import Logger, LoggerStatus
 from creators.software import AurBuilder, FirefoxCustomize
 from creators.patches import PatchSystemBugs
 from creators.daemons import Daemons
-from creators.bootloader import GrubTheme
+from creators.grubbootloader import GrubTheme
 
 
 class SystemConfiguration:
@@ -19,6 +19,7 @@ class SystemConfiguration:
 
         Daemons.enable_all_daemons()
         PatchSystemBugs.enable_all_patches()
+        GrubTheme.build()
 
     @staticmethod
     def __start_option_1():
@@ -42,13 +43,6 @@ class SystemConfiguration:
     def __start_option_4():
         Logger.add_record("[+] Installed Dev Dependencies", status=LoggerStatus.SUCCESS)
         SystemConfiguration.__install_pacman_package(packages.DEV_PACKAGES)
-
-
-    @staticmethod
-    def __start_option_5():
-        Logger.add_record("[+] Configuring GRUB", status=LoggerStatus.SUCCESS)
-        GrubTheme.install()
-
 
 
     @staticmethod
