@@ -5,6 +5,7 @@ from logger import Logger, LoggerStatus
 from creators.software import AurBuilder, FirefoxCustomize
 from creators.patches import PatchSystemBugs
 from creators.daemons import Daemons
+from creators.bootloader import GrubTheme
 
 
 class SystemConfiguration:
