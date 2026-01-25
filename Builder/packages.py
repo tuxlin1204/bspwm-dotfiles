@@ -1,6 +1,6 @@
 
 BASE_PACKAGES = [
-    "base-devel", # Базовые пакеты для сборки yay
+    "base-devel", "fakeroot", "debugedit", # Базовые пакеты для сборки yay
     "ffmpegthumbnailer", "tumbler",  # Создает миниатюры в thunar
     "lsd",  # Расширенная версия ls
     "alacritty",  # Эмулятор терминала
