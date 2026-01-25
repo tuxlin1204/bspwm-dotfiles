@@ -77,7 +77,7 @@ class SystemConfiguration:
         os.system("cp -r bin/ ~/")
 
     @staticmethod
-def __start_option_5():
-    Logger.add_record("[+] Configuring GRUB", status=LoggerStatus.SUCCESS)
-    GrubTheme.install()
+    def __start_option_5():
+        Logger.add_record("[+] Configuring GRUB", status=LoggerStatus.SUCCESS)
+        GrubTheme.install()
 
