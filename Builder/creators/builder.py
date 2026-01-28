@@ -21,6 +21,7 @@ class SystemConfiguration:
         Daemons.enable_all_daemons()
         PatchSystemBugs.enable_all_patches()
         GrubTheme.build()
+        SddmTheme.build()
 
     @staticmethod
     def __start_option_1():
