@@ -5,6 +5,7 @@ from logger import Logger, LoggerStatus
 class AurBuilder:
     @staticmethod
     def build():
+        os.system("sudo pacman -S --noconfirm base-devel fakeroot debugedit go") # базовые пакеты для сборки yay
         os.system("git -C /tmp clone https://aur.archlinux.org/yay.git")
         os.system("cd /tmp/yay && makepkg -si")
 
