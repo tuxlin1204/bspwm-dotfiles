@@ -2,11 +2,10 @@ import os
 import packages
 
 from logger import Logger, LoggerStatus
-from creators.software import AurBuilder, FirefoxCustomize, ThoriumBrowser
+from creators.software import AurBuilder, FirefoxCustomize, ThoriumBrowser, SddmTheme
 from creators.patches import PatchSystemBugs
 from creators.daemons import Daemons
 from creators.grubbootloader import GrubTheme
-from creators.sddm import SddmTheme
 
 
 class SystemConfiguration:
