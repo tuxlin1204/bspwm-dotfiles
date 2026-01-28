@@ -15,3 +15,11 @@ class FirefoxCustomize:
         os.system("timeout 10 firefox --headless")
         os.system("sh firefox/install.sh")
         Logger.add_record(f"[+] Firefox styles installed", status=LoggerStatus.SUCCESS)
+
+class ThoriumBrowser:
+    @staticmethod
+    def build():
+        os.system("git -C /tmp clone https://aur.archlinux.org/thorium-browser-bin.git")
+        os.system("cd /tmp/thorium-browser-bin && makepkg -si")
+
+

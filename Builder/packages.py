@@ -90,7 +90,7 @@ DEV_PACKAGES = [
     "lazygit",  # Удобный интерфейс для управления git
     "wireshark-qt",  # Перехват и анализ сетевых пакетов
     "filezilla",  # Работа с FTP из графической среды
-    "chromium",  # Дополнительный браузер
+    # "chromium",  # Дополнительный браузер
     "xfce4-settings",  # Зависимость для thunar и thunar actions
     "keepassxc",  # Защищенный менеджер паролей
     "audacity",  # Работа со звуком
