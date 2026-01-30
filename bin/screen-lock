@@ -1,23 +1,59 @@
 #!/bin/bash
 
-# https://github.com/Raymo111/i3lock-color
-
 fg=c0caf5
 wrong=db4b4b
 date=7aa2f7
 verify=7aa2f7
 
 lock_image="$HOME/Images/system/lock_screen.png"
+temp_image="/tmp/lock_screen_scaled.png"
 
-i3lock -n --force-clock -i $lock_image -e --indicator --radius=20 \
---ring-width=40 --inside-color=$fg --ring-color=$fg --insidever-color=$verify \
---ringver-color=$verify --insidewrong-color=$wrong --ringwrong-color=$wrong \
---line-uses-inside --keyhl-color=$verify --separator-color=$verify --bshl-color=$verify \
---time-str="%H:%M" --time-size=140 --date-str="%a, %d %b" --date-size=45 --verif-text="Verifying Password..." \
---wrong-text="Wrong Password!" --noinput-text="" --greeter-text="Type the password to Unlock" --ind-pos="650:760" \
---time-font="Fira Code:style=Bold" --date-font="Fira Code" --verif-font="Fira Code" --greeter-font="Fira Code" \
---wrong-font="Fira Code" --verif-size=23 --greeter-size=23 --wrong-size=23 --time-pos="650:540" --date-pos="650:600" \
---greeter-pos="650:930" --wrong-pos="650:970" --verif-pos="650:805" --date-color=$date --time-color=$date --greeter-color=$fg \
---wrong-color=$wrong --verif-color=$verify --verif-pos="650:970" --pointer=default --refresh-rate=0 --pass-media-keys \
---pass-volume-keys
+# Получаем виртуальный размер всех мониторов (ширина x высота)
+virtual_res=$(xrandr --query | grep " connected" | awk '{print $3}' | grep -oP '[0-9]+x[0-9]+' | \
+               awk -F'x' '{w+=$1; h=($2>h)?$2:h} END{print w"x"h}')
 
+echo "Виртуальное разрешение: $virtual_res"
+
+# Масштабируем исходное изображение под виртуальный размер
+convert "$lock_image" -resize "$virtual_res!" "$temp_image"
+
+screen_res=$(xrandr | grep '*' | head -n1 | awk '{print $1}')  # Например: 2560x1440
+screen_width=${screen_res%x*}   # 2560
+screen_height=${screen_res#*x}  # 1440
+
+date_time_radiusi=$((screen_width / screen_height * 10 ))
+
+gap=$((screen_width / screen_height * 200 ))       # расстояние между временем и текстом приветствия 400
+
+time_x=$((screen_width / 2))
+time_y=$((screen_height / 2))   # например, 540 пикселей от верхнего края
+
+index_x=$((time_x))
+index_y=$((time_y+gap - 70)) 
+
+data=70		#70
+greeter_x=$time_x
+greeter_y=$((time_y + gap))
+data_y=$((time_y + data))
+ # Запускаем i3lock один раз на основном экране (экран 0)
+i3lock -n --force-clock \
+-i "$temp_image" -e --indicator \
+--ind-pos="${index_x}:${index_y}" \
+--radius=${date_time_radiusi} --ring-width=40 \
+--inside-color=$fg --ring-color=$fg \
+--insidever-color=$verify --ringver-color=$verify \
+--insidewrong-color=$wrong --ringwrong-color=$wrong \
+--line-uses-inside \
+--keyhl-color=$verify --separator-color=$verify --bshl-color=$verify \
+--time-pos="${time_x}:${time_y}" \
+--date-pos="${greeter_x}:${data_y}" \
+--time-str="%H:%M" --date-str="%a, %d %b" \
+--time-size=100 --date-size=45 \
+--verif-text="Verifying Password..." --wrong-text="Wrong Password!" \
+--greeter-pos="${greeter_x}:${greeter_y}" \
+--greeter-text="Type the password to Unlock" --noinput-text="" \
+--time-font="FiraCode-Bold" --date-font="FiraCode-Regular" --verif-font="FiraCode-Regular" \
+--wrong-font="FiraCode-Regular" --greeter-font="FiraCode-Regular" \
+--verif-size=23 --greeter-size=23 --wrong-size=23 \
+--date-color=$date --time-color=$date --greeter-color=$fg --wrong-color=$wrong --verif-color=$verify \
+--screen=0
