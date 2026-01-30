@@ -81,7 +81,10 @@ BASE_PACKAGES = [
     "gthumb",  # Просмотр и редактирование изображений
     "gnome-disk-utility",  # Просмотр и редактирование дисков
 
-    #AUR
+]
+
+DEV_PACKAGES = [
+#AUR
     "base-devel",  # Для компиляции пакетов из AUR
     "fakeroot",  # Мнимые права суперпользователя для установки под sudo автоматически
     "debugedit",  # Утилита связанная с отладочными символами в Linux
@@ -92,9 +95,7 @@ BASE_PACKAGES = [
     "qt6-svg", # Отрисовка и рендеринг SDDM
     "qt6-virtualkeyboard", # Отрисовка и рендеринг SDDM
     "qt-multimedia-ffmpeg", # Отрисовка и рендеринг SDDM
-]
 
-DEV_PACKAGES = [
     "screenkey",  # Вывод нажатий клавиатуры на экран
     "timeshift",  # Софт для бэкапов
     "pinta",  # Софт для рисования
