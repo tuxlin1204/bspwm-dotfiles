@@ -34,15 +34,6 @@ class SystemConfiguration:
 
     @staticmethod
     def __start_option_3():
-        Logger.add_record("[+] Installed BSPWM Dependencies", status=LoggerStatus.SUCCESS)
-        AurBuilder.build()
-        SystemConfiguration.__install_pacman_package(packages.BASE_PACKAGES)
-        SystemConfiguration.__install_aur_package(packages.AUR_PACKAGES)
-        FirefoxCustomize.build()
-        ThoriumBrowser.build()
-
-    @staticmethod
-    def __start_option_4():
         Logger.add_record("[+] Installed Dev Dependencies", status=LoggerStatus.SUCCESS)
         SystemConfiguration.__install_pacman_package(packages.DEV_PACKAGES)
 
@@ -52,6 +43,18 @@ class SystemConfiguration:
         for package in package_names:
             os.system(f"sudo pacman -S --noconfirm {package}")
             Logger.add_record(f"Installed: {package}", status=LoggerStatus.SUCCESS)
+
+
+
+
+    @staticmethod
+    def __start_option_4():
+        Logger.add_record("[+] Installed BSPWM Dependencies", status=LoggerStatus.SUCCESS)
+        AurBuilder.build()
+        SystemConfiguration.__install_pacman_package(packages.BASE_PACKAGES)
+        SystemConfiguration.__install_aur_package(packages.AUR_PACKAGES)
+        FirefoxCustomize.build()
+        ThoriumBrowser.build()
 
     @staticmethod
     def __install_aur_package(package_names: list):

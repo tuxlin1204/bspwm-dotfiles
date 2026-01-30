@@ -21,7 +21,7 @@ screen_res=$(xrandr | grep '*' | head -n1 | awk '{print $1}')  # Наприме�
 screen_width=${screen_res%x*}   # 2560
 screen_height=${screen_res#*x}  # 1440
 
-date_time_radiusi=$((screen_width / screen_height * 10 ))
+date_time_radiusi=$((screen_width / screen_height * 25 ))
 
 gap=$((screen_width / screen_height * 200 ))       # расстояние между временем и текстом приветствия 400
 
@@ -29,12 +29,15 @@ time_x=$((screen_width / 2))
 time_y=$((screen_height / 2))   # например, 540 пикселей от верхнего края
 
 index_x=$((time_x))
-index_y=$((time_y+gap - 70)) 
+index_y=$((time_y+gap - 70))
 
-data=70		#70
+data=70		# расстояние между датой и временем
 greeter_x=$time_x
 greeter_y=$((time_y + gap))
 data_y=$((time_y + data))
+
+setxkbmap us # смена раскладки при блокировки
+
  # Запускаем i3lock один раз на основном экране (экран 0)
 i3lock -n --force-clock \
 -i "$temp_image" -e --indicator \
@@ -49,9 +52,7 @@ i3lock -n --force-clock \
 --date-pos="${greeter_x}:${data_y}" \
 --time-str="%H:%M" --date-str="%a, %d %b" \
 --time-size=100 --date-size=45 \
---verif-text="Verifying Password..." --wrong-text="Wrong Password!" \
 --greeter-pos="${greeter_x}:${greeter_y}" \
---greeter-text="Type the password to Unlock" --noinput-text="" \
 --time-font="FiraCode-Bold" --date-font="FiraCode-Regular" --verif-font="FiraCode-Regular" \
 --wrong-font="FiraCode-Regular" --greeter-font="FiraCode-Regular" \
 --verif-size=23 --greeter-size=23 --wrong-size=23 \

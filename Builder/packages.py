@@ -80,6 +80,18 @@ BASE_PACKAGES = [
     "noto-fonts-cjk",  # Для отображения emoji в rofi-menu
     "gthumb",  # Просмотр и редактирование изображений
     "gnome-disk-utility",  # Просмотр и редактирование дисков
+
+    #AUR
+    "base-devel",  # Для компиляции пакетов из AUR
+    "fakeroot",  # Мнимые права суперпользователя для установки под sudo автоматически
+    "debugedit",  # Утилита связанная с отладочными символами в Linux
+    "go",  # Утилита для управления проектами на языке Go
+
+    #SDDM
+    "sddm", # Приветственный экран
+    "qt6-svg", # Отрисовка и рендеринг SDDM
+    "qt6-virtualkeyboard", # Отрисовка и рендеринг SDDM
+    "qt-multimedia-ffmpeg", # Отрисовка и рендеринг SDDM
 ]
 
 DEV_PACKAGES = [
@@ -118,6 +130,7 @@ DEV_PACKAGES = [
     "cloc",  # Посчитать количество строк кода
     "hexyl",  # Hex дампер
     "remmina freerdp", # RDP клиент
+
 ]
 
 AUR_PACKAGES = [

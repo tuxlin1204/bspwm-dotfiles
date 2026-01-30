@@ -28,10 +28,10 @@ class UserInterface:
         print("2) Update Arch DataBase? [Y/n] ", end="")
         option_2 = UserInterface.is_verify_response(input())
 
-        print("3) Install BSPWM Dependencies? [Y/n] ", end="")
+        print("3) Install Dev Dependencies?[Y/n] ", end="")
         option_3 = UserInterface.is_verify_response(input())
 
-        print("4) Install Dev Dependencies? [Y/n] ", end="")
+        print("4)  Install BSPWM Dependencies? [Y/n] ", end="")
         option_4 = UserInterface.is_verify_response(input())
 
         return [option_1, option_2, option_3, option_4]
