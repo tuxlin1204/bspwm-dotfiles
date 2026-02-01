@@ -7,6 +7,8 @@ class PatchSystemBugs:
         PatchSystemBugs.__fix_xterm_error_in_thunar()
         PatchSystemBugs.__make_fish_the_default()
         PatchSystemBugs.__assign_permissions_to_configs()
+        PatchSystemBugs.__assign_permissions_to_backlight()
+
         
     @staticmethod
     def __fix_xterm_error_in_thunar():
@@ -19,4 +21,6 @@ class PatchSystemBugs:
     @staticmethod
     def __assign_permissions_to_configs():
         os.system("sudo chmod -R 700 ~/.config/*")
-
+@staticmethod
+    def __assign_permissions_to_backlight():
+        os.system("sudo usermod -aG video $USER")
