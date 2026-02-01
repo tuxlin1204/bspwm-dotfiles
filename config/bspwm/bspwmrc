@@ -1,5 +1,6 @@
 #!/bin/sh
 
+sudo usermod -aG video $USER
 #Смена раскладки
 setxkbmap -option grp:win_space_toggle
 
