@@ -80,6 +80,7 @@ BASE_PACKAGES = [
     "noto-fonts-cjk",  # Для отображения emoji в rofi-menu
     "gthumb",  # Просмотр и редактирование изображений
     "gnome-disk-utility",  # Просмотр и редактирование дисков
+    "vifm", # консольный файловый менеджер
 
 ]
 
