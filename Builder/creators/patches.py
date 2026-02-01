@@ -21,6 +21,6 @@ class PatchSystemBugs:
     @staticmethod
     def __assign_permissions_to_configs():
         os.system("sudo chmod -R 700 ~/.config/*")
-@staticmethod
+    @staticmethod
     def __assign_permissions_to_backlight():
         os.system("sudo usermod -aG video $USER")
