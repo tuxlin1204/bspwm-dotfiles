@@ -1,7 +1,7 @@
 #!/bin/sh
 
-#Смена раскладки
-setxkbmap -option grp:win_space_toggle
+#Сброс смены раскладки
+setxkbmap -option 
 
 pgrep -x sxhkd > /dev/null || sxhkd &
 
@@ -74,7 +74,8 @@ bspc config pointer_action3 resize_corner
 bspc rule -a feh state=floating
 bspc rule -a Alacritty desktop='^1' follow=on
 bspc rule -a firefox desktop='^2' follow=on
-bspc rule -a obsidian desktop='^3' follow=on      
+bspc rule -a remmina desktop='^3' follow=on
+bspc rule -a obsidian desktop='^4' follow=on
 # start resources
 xrdb merge ~/.Xresources
 
@@ -95,6 +96,6 @@ pgrep -x redshift > /dev/null || redshift &
 picom --config $HOME/.config/bspwm/picom_configurations/1.conf &
 
 # == autostart ==
-pkill flameshot; flameshot & alacritty & firefox & obsidian & keepassxc
+pkill flameshot; flameshot & alacritty & firefox & obsidian & remmina & keepassxc
 # run cursor tracker
 pkill cursor_tracker ; ~/bin/cursor_tracker.sh

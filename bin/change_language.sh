@@ -2,7 +2,7 @@
 
 CURRENT_LAYOUT=$(xset -q|grep LED| awk '{ print $10 }')
 
-setxkbmap -layout us,ru -option "grp:alt_shift_toggle"
+setxkbmap -layout us,ru -option "grp:win_space_toggle"
 if [ "$CURRENT_LAYOUT" = "00000000" ]; then
 	notify-send "Lang: US" -t 700
 fi
