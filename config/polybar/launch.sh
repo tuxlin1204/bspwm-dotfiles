@@ -35,12 +35,20 @@ echo "---" | tee -a /tmp/polybar1.log /tmp/polybar2.log
 # Launch bar1 and bar2
 echo "---" | tee -a /tmp/polybar1.log /tmp/polybar2.log
 
-# Run on the desired monitor
-if [[ $(xrandr -q | grep 'HDMI-0 connected' ) ]]; then
-	polybar top_external -r >>/tmp/polybar1.log 2>&1 & disown
-	polybar top -r >>/tmp/polybar1.log 2>&1 & disown
-	echo "Polybar launched for two monitors"
+# получаем список подключённых мониторов
+MONITORS=$(xrandr --query | grep " connected" | cut -d" " -f1)
+COUNT=$(echo "$MONITORS" | wc -l)
+
+if [[ "$COUNT" -eq 1 ]]; then
+    # один монитор → один polybar
+    MONITOR=$MONITORS polybar top -r &
 else
-	polybar top -r >>/tmp/polybar1.log 2>&1 & disown
-	echo "Polybar launched for one monitor..."
+    # несколько мониторов → по polybar на каждый
+    for m in $MONITORS; do
+        if [[ "$m" == "eDP-1" ]]; then
+            MONITOR=$m polybar top -r &
+        else
+           MONITOR=$m polybar top_external -r &
+        fi
+    done
 fi
