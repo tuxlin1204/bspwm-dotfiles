@@ -11,7 +11,7 @@ setxkbmap -option
 pgrep -x sxhkd > /dev/null || sxhkd &
 
 # Multiple monitor support
-sh $HOME/.config/bspwm/dual_monitors.sh
+sh $HOME/.config/bspwm/multy_monitors.sh
 
 #bspc monitor HDMI-0 -d 1 2 3
 #bspc monitor DVI-0 -d 4 5 6 
