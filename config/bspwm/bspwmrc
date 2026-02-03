@@ -17,40 +17,6 @@ sh $HOME/.config/bspwm/dual_monitors.sh
 #bspc monitor DVI-0 -d 4 5 6 
 
 
-# Ждём xrandr
- sleep 1
-
-# Получаем список мониторов
-MONITORS=$(xrandr --query | awk '/ connected/{print $1}')
-COUNT=$(echo "$MONITORS" | wc -l)
-
-# Названия рабочих столов
-
-ALL_DESKTOPS=$(seq 1 6)
-PRIMARY_DESKTOPS=$(seq 1 3)
-EXTERNAL_DESKTOPS=$(seq 4 6)
-
-
-# Если ОДИН монитор
-if [ "$COUNT" -eq 1 ]; then
-    for m in $MONITORS; do
-        bspc monitor "$m" -d $ALL_DESKTOPS
-    done
-else
-    # Если НЕСКОЛЬКО мониторов
-    PRIMARY=$(xrandr --query | awk '/ connected primary/{p
- rint $1}')
-    [ -z "$PRIMARY" ] && PRIMARY=$(echo "$MONITORS" | head
--n1)
-
-    for m in $MONITORS; do
-        if [ "$m" = "$PRIMARY" ]; then
-            bspc monitor "$m" -d $PRIMARY_DESKTOPS
-        else
-            bspc monitor "$m" -d $EXTERNAL_DESKTOPS
-        fi
-    done
-fi
 
 # Window borders (Auto-Generate)
 bspc config focus_follows_pointer true

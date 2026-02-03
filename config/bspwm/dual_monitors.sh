@@ -1,59 +1,157 @@
-#!/bin/sh
+#!/bin/bash
 
-INTERNAL_MONITOR="eDP-1"
-EXTERNAL_MONITOR="HDMI-1-1"
-
-monitor_add() {
-  # Move first 5 desktops to external monitor
-  for desktop in $(bspc query -D --names -m "$INTERNAL_MONITOR" | sed 5q); do
-    bspc desktop "$desktop" --to-monitor "$EXTERNAL_MONITOR"
-  done
-
-  # Remove default desktop created by bspwm
-  bspc desktop Desktop --remove
-
-  # reorder monitors
-  bspc wm -O "$EXTERNAL_MONITOR" "$INTERNAL_MONITOR"
+# Функция для определения подключенных мониторов
+detect_monitors() {
+    xrandr --query | grep -w "connected" | awk '{print $1}'
 }
 
-monitor_remove() {
-  # Add default temp desktop because a minimum of one desktop is required per monitor
-  bspc monitor "$EXTERNAL_MONITOR" -a Desktop
-
-  # Move all desktops except the last default desktop to internal monitor
-  for desktop in $(bspc query -D -m "$EXTERNAL_MONITOR");	do
-    bspc desktop "$desktop" --to-monitor "$INTERNAL_MONITOR"
-  done
-
-  # delete default desktops
-  bspc desktop Desktop --remove
-
-  # reorder desktops
-  bspc monitor "$INTERNAL_MONITOR" -o 1 2 3 4 5 6 7 8 9
+# Функция для классификации мониторов
+classify_monitor() {
+    local monitor=$1
+    if [[ $monitor == eDP* ]] || [[ $monitor == LVDS* ]]; then
+        echo "internal"
+    else
+        echo "external"
+    fi
 }
 
-# On first load setup default workspaces
-if [[ $(xrandr -q | grep "${EXTERNAL_MONITOR} connected") ]]; then
-  bspc monitor "$EXTERNAL_MONITOR" -d 1 2 3 4 5
-  bspc monitor "$INTERNAL_MONITOR" -d 6 7 8 9
-  bspc wm -O "$EXTERNAL_MONITOR" "$INTERNAL_MONITOR"
-else
-  bspc monitor "$INTERNAL_MONITOR" -d 1 2 3 4 5 6 7 8 9 
-fi
+# Основная функция настройки
+main() {
+    # Получаем список подключенных мониторов
+    local monitors=($(detect_monitors))
+    echo "Detected monitors: ${monitors[*]}"
 
-if [[ $(xrandr -q | grep "${EXTERNAL_MONITOR} connected") ]]; then
-  # set xrandr rules for docked setup
-  xrandr --output "$INTERNAL_MONITOR" --mode 1920x1080 --pos 0x0 --rotate normal
-  xrandr --output "$EXTERNAL_MONITOR" --primary --mode 2560x1440 --pos 1920x0 --rotate normal --left-of "$INTERNAL_MONITOR"
-  
-  if [[ $(bspc query -D -m "${EXTERNAL_MONITOR}" | wc -l) -ne 5 ]]; then
-    monitor_add
-  fi
-  bspc wm -O "$EXTERNAL_MONITOR" "$INTERNAL_MONITOR"
-else
-  # set xrandr rules for mobile setup
-  xrandr --output "$INTERNAL_MONITOR" --primary --mode 1920x1080 --pos 0x0 --rotate normal --output "$EXTERNAL_MONITOR" --off
-  if [[ $(bspc query -D -m "${INTERNAL_MONITOR}" | wc -l) -ne 10 ]]; then
-    monitor_remove
-  fi
-fi
+    # Разделяем на внутренние и внешние
+    local internal_monitor=""
+    local external_monitors=()
+
+    for monitor in "${monitors[@]}"; do
+        type=$(classify_monitor "$monitor")
+        if [[ $type == "internal" ]]; then
+            internal_monitor="$monitor"
+        else
+            external_monitors+=("$monitor")
+        fi
+    done
+
+    # Если внутренний монитор не найден, берем первый
+    if [[ -z "$internal_monitor" ]] && [[ ${#monitors[@]} -gt 0 ]]; then
+        internal_monitor="${monitors[0]}"
+    fi
+
+    echo "Internal monitor: $internal_monitor"
+    echo "External monitors: ${external_monitors[*]}"
+
+    # Сценарий 1: Есть внешние мониторы
+    if [[ ${#external_monitors[@]} -gt 0 ]]; then
+        echo "Setting up with external monitors..."
+
+        # Сначала отключаем все мониторы
+        for monitor in "${monitors[@]}"; do
+            xrandr --output "$monitor" --off
+        done
+        sleep 1
+
+        # Включаем мониторы в правильном порядке
+        local prev_monitor=""
+
+        for i in "${!external_monitors[@]}"; do
+            local external="${external_monitors[$i]}"
+            local mode=$(xrandr | grep -A1 "^$external connected" | tail -1 | awk '{print $1}')
+            [[ -z "$mode" ]] && mode="1920x1080"
+
+            if [[ $i -eq 0 ]]; then
+                # Первый внешний монитор - основной
+                if [[ -n "$internal_monitor" ]]; then
+                    xrandr --output "$external" --primary --mode "$mode" --pos 0x0 --rotate normal \
+                           --output "$internal_monitor" --mode 1920x1080 --right-of "$external" --rotate normal
+                    prev_monitor="$external"
+                else
+                    xrandr --output "$external" --primary --mode "$mode" --pos 0x0 --rotate normal
+                    prev_monitor="$external"
+                fi
+            else
+                # Дополнительные внешние мониторы
+                xrandr --output "$external" --mode "$mode" --right-of "$prev_monitor" --rotate normal
+                prev_monitor="$external"
+            fi
+            sleep 1
+        done
+
+        # Если есть внутренний монитор и он еще не настроен
+        if [[ -n "$internal_monitor" ]] && ! xrandr | grep -q "^$internal_monitor connected [0-9]"; then
+            xrandr --output "$internal_monitor" --mode 1920x1080 --right-of "$prev_monitor" --rotate normal
+        fi
+
+        sleep 2
+
+        # Настраиваем bspwm рабочие столы
+        # Очищаем все мониторы
+        for monitor in "${monitors[@]}"; do
+            bspc monitor "$monitor" -r all 2>/dev/null || true
+        done
+
+        # Создаем рабочие столы для внешних мониторов
+        for external in "${external_monitors[@]}"; do
+            bspc monitor "$external" -d 1 2 3
+        done
+
+        # Создаем рабочие столы для внутреннего монитора
+        if [[ -n "$internal_monitor" ]]; then
+            bspc monitor "$internal_monitor" -d 4 5 6
+        fi
+
+        # Устанавливаем порядок мониторов
+        if [[ ${#external_monitors[@]} -gt 0 ]] && [[ -n "$internal_monitor" ]]; then
+            bspc wm --reorder-monitors "${external_monitors[@]}" "$internal_monitor"
+        fi
+
+    # Сценарий 2: Только внутренний монитор
+    else
+        echo "Setting up with internal monitor only..."
+
+        # Отключаем все кроме внутреннего
+        for monitor in "${monitors[@]}"; do
+            if [[ "$monitor" != "$internal_monitor" ]]; then
+                xrandr --output "$monitor" --off
+            fi
+        done
+
+        # Настраиваем внутренний монитор
+        xrandr --output "$internal_monitor" --primary --mode 1920x1080 --pos 0x0 --rotate normal
+        sleep 2
+
+        # Очищаем и создаем рабочие столы
+        bspc monitor "$internal_monitor" -r all 2>/dev/null || true
+        bspc monitor "$internal_monitor" -d 1 2 3 4 5 6
+    fi
+
+    # Настройки для перемещения курсора между мониторами
+    bspc config focus_follows_pointer true
+    bspc config pointer_follows_focus false
+    bspc config pointer_follows_monitor true
+
+    # Настройка обоев
+    if command -v feh &> /dev/null; then
+        feh --bg-fill --no-fehbg ~/.config/wallpaper.jpg 2>/dev/null || true
+    fi
+
+    # Запуск полибара
+    if command -v polybar &> /dev/null; then
+        # Убиваем старые полибары
+        pkill -f "polybar top" 2>/dev/null || true
+        sleep 1
+
+        # Запускаем на каждом мониторе
+        for monitor in "${monitors[@]}"; do
+            echo "Starting polybar on $monitor"
+            MONITOR="$monitor" polybar top &
+            sleep 0.5
+        done
+    fi
+
+    echo "Monitor setup completed"
+}
+
+# Запуск
+main
