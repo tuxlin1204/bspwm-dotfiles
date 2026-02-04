@@ -8,14 +8,12 @@ verify=7aa2f7
 lock_image="$HOME/Images/system/lock_screen.png"
 temp_image="/tmp/lock_screen_scaled.png"
 
-# Получаем виртуальный размер всех мониторов (ширина x высота)
-virtual_res=$(xrandr --query | grep " connected" | awk '{print $3}' | grep -oP '[0-9]+x[0-9]+' | \
-               awk -F'x' '{w+=$1; h=($2>h)?$2:h} END{print w"x"h}')
+# Полная геометрия X11 (оба монитора)
+root_res=$(xdpyinfo | awk '/dimensions/{print $2}')
+echo "Root resolution: $root_res"
 
-echo "Виртуальное разрешение: $virtual_res"
-
-# Масштабируем исходное изображение под виртуальный размер
-convert "$lock_image" -resize "$virtual_res!" "$temp_image"
+# Фон на ВСЮ X-сессию
+convert "$lock_image" -resize "$root_res^" -gravity center -extent "$root_res" "$temp_image"
 
 screen_res=$(xrandr | grep '*' | head -n1 | awk '{print $1}')  # Например: 2560x1440
 screen_width=${screen_res%x*}   # 2560
