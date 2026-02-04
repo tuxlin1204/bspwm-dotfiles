@@ -1,24 +1,27 @@
 #!/bin/bash
 
-# Получаем активные интерфейсы
-INTERFACE=$(ip route | grep default | awk '{print $5}')
-IP_ADDRESS=$(ip addr show $INTERFACE | grep -oP 'inet \K[\d.]+(?=/\d+)')
+# Получаем default route (интерфейс + основной src IP)
+ROUTE_INFO=$(ip route get 1.1.1.1 2>/dev/null)
 
-# Также получаем внешний IP (если есть интернет)
-EXTERNAL_IP=$(curl -s https://api.ipify.org 2>/dev/null || echo "No internet")
+INTERFACE=$(awk '{for (i=1;i<=NF;i++) if ($i=="dev") print $(i+1)}' <<< "$ROUTE_INFO")
+IP_ADDRESS=$(awk '{for (i=1;i<=NF;i++) if ($i=="src") print $(i+1)}' <<< "$ROUTE_INFO")
 
-MESSAGE="Interface: $INTERFACE
-Local IP: $IP_ADDRESS"
+# Внешний IP
+EXTERNAL_IP=$(curl -s --max-time 3 https://api.ipify.org || true)
 
-if [ -n "$EXTERNAL_IP" ] && [ "$EXTERNAL_IP" != "No internet" ]; then
+# Формируем сообщение
+MESSAGE="Interface: ${INTERFACE:-unknown}
+Local IP: ${IP_ADDRESS:-not found}"
+
+if [[ -n "$EXTERNAL_IP" ]]; then
     MESSAGE="$MESSAGE
 External IP: $EXTERNAL_IP"
 fi
 
-# Показываем уведомление
+# Уведомление
 notify-send -t 5000 "Network Information" "$MESSAGE"
 
-# Копируем локальный IP в буфер обмена
-if command -v xclip &> /dev/null; then
+# Копируем основной локальный IP
+if command -v xclip &>/dev/null && [[ -n "$IP_ADDRESS" ]]; then
     echo -n "$IP_ADDRESS" | xclip -selection clipboard
 fi
