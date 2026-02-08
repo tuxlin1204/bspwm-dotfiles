@@ -33,7 +33,7 @@ BASE_PACKAGES = [
     "fastfetch",  # Вывод информации о системе и железе
     "rofi", "rofi-calc", "rofi-emoji",  # Меню приложений + доп.плагины
     "mat2",  # Очистка метаданных изображения
-    "ranger",  # Консольный файловый менеджер
+   #"ranger",  # Консольный файловый менеджер
     "calcurse",  # Консольный календарь
     "ttf-jetbrains-mono", "ttf-jetbrains-mono-nerd",  # Базовые шрифты
     "ttf-fira-code", "ttf-iosevka-nerd",  # Базовые шрифты

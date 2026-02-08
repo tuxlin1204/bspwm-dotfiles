@@ -1,0 +1,29 @@
+" Ranger-inspired color scheme for vifm
+
+highlight Normal        cterm=none           ctermfg=252  ctermbg=234
+highlight Directory     cterm=bold           ctermfg=33   ctermbg=234
+highlight Executable    cterm=bold           ctermfg=70   ctermbg=234
+highlight Link          cterm=none           ctermfg=37   ctermbg=234
+highlight BrokenLink    cterm=none           ctermfg=160  ctermbg=234
+highlight Selected      cterm=bold           ctermfg=0    ctermbg=252
+highlight MediaImage    cterm=none           ctermfg=178  ctermbg=234
+highlight MediaVideo    cterm=bold           ctermfg=160  ctermbg=234
+highlight MediaAudio    cterm=bold           ctermfg=70   ctermbg=234
+highlight Container     cterm=bold           ctermfg=160  ctermbg=234
+highlight Socket        cterm=bold           ctermfg=125  ctermbg=234
+highlight Fifo          cterm=none           ctermfg=178  ctermbg=234
+highlight Device        cterm=bold           ctermfg=178  ctermbg=234
+highlight VcsModified   cterm=bold           ctermfg=160  ctermbg=234
+highlight VcsAdded      cterm=bold           ctermfg=70   ctermbg=234
+highlight VcsUntracked  cterm=bold           ctermfg=37   ctermbg=234
+highlight VcsStaged     cterm=bold           ctermfg=70   ctermbg=234
+highlight VcsConflict   cterm=bold           ctermfg=125  ctermbg=234
+highlight VcsIgnored    cterm=none           ctermfg=252  ctermbg=234
+highlight StatusLine    cterm=bold           ctermfg=33   ctermbg=234
+highlight TopLine       cterm=bold           ctermfg=70   ctermbg=234
+highlight CmdLine       cterm=none           ctermfg=252  ctermbg=234
+highlight ErrorMsg      cterm=bold           ctermfg=160  ctermbg=234
+highlight CurrLine      cterm=bold,inverse   ctermfg=default ctermbg=default
+highlight OtherLine     cterm=bold           ctermfg=default ctermbg=234
+highlight LineNr        cterm=none           ctermfg=244  ctermbg=234
+

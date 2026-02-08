@@ -1,0 +1,71 @@
+" Vifm colorscheme based on bspwm-dotfiles theme
+" Background: dark
+
+" Default colors
+hi Normal               cterm=none    ctermfg=250    ctermbg=235
+hi StatusLine           cterm=none    ctermfg=255    ctermbg=238
+hi StatusLineNC         cterm=none    ctermfg=245    ctermbg=238
+
+" File listings
+hi Directory            cterm=bold    ctermfg=33     " Blue
+hi Link                 cterm=bold    ctermfg=45     " Cyan
+hi Socket               cterm=none    ctermfg=13     " Magenta
+hi Device               cterm=none    ctermfg=11     " Yellow
+hi Executable           cterm=bold    ctermfg=46     " Bright green
+
+" File types
+hi Cmpi                 cterm=none    ctermfg=226    ctermbg=none  " .c, .cpp files
+hi Cmp                  cterm=none    ctermfg=227    ctermbg=none  " .o files
+hi Img                  cterm=none    ctermfg=213    ctermbg=none  " Images
+hi Media                cterm=none    ctermfg=207    ctermbg=none  " Media files
+
+" Special indicators
+hi Selected             cterm=bold    ctermfg=255    ctermbg=240
+hi CurrLine             cterm=bold    ctermfg=none   ctermbg=236
+hi TopLine             cterm=bold    ctermfg=255    ctermbg=238
+hi TopLineSel           cterm=bold    ctermfg=255    ctermbg=240
+hi Border               cterm=none    ctermfg=240    ctermbg=none
+
+" Marks and indicators
+hi OtherMark            cterm=bold    ctermfg=208    ctermbg=235    " Other marks
+hi Bad                  cterm=none    ctermfg=124    ctermbg=none   " Broken links
+hi Wood                 cterm=none    ctermfg=130    ctermbg=none   " .log, .bak, .old
+hi Message              cterm=bold    ctermfg=118    ctermbg=none   " Info messages
+hi ErrorMsg             cterm=bold    ctermfg=196    ctermbg=none   " Error messages
+hi Win                  cterm=none    ctermfg=245    ctermbg=236    " Inactive window
+hi TabLine              cterm=none    ctermfg=245    ctermbg=238    " Tab line
+hi TabLineSel           cterm=bold    ctermfg=255    ctermbg=240    " Selected tab
+hi WildMenu             cterm=bold    ctermfg=255    ctermbg=33     " Completion menu
+
+" Search and highlighting
+hi Search               cterm=bold    ctermfg=16     ctermbg=220    " Search results
+hi IncSearch            cterm=bold    ctermfg=16     ctermbg=214    " Incremental search
+hi QuickSelect          cterm=bold    ctermfg=16     ctermbg=45     " Quick select mode
+
+" File sizes and permissions
+hi SizeSmall            cterm=none    ctermfg=250    ctermbg=none   " Small files
+hi SizeMedium           cterm=none    ctermfg=248    ctermbg=none   " Medium files
+hi SizeLarge            cterm=bold    ctermfg=246    ctermbg=none   " Large files
+hi SizeHuge             cterm=bold    ctermfg=244    ctermbg=none   " Huge files
+
+" Special files and directories
+hi User1                cterm=bold    ctermfg=202    ctermbg=none   " Root-owned
+hi User2                cterm=bold    ctermfg=165    ctermbg=none   " Setuid
+hi AdditionalInfo       cterm=none    ctermfg=248    ctermbg=none   " Additional file info
+
+" Popup menus
+hi Pmenu                cterm=none    ctermfg=250    ctermbg=238
+hi PmenuSel             cterm=bold    ctermfg=255    ctermbg=240
+hi PmenuSbar            cterm=none    ctermfg=none   ctermbg=236
+hi PmenuThumb           cterm=none    ctermfg=none   ctermbg=245
+
+" File operation indicators
+hi Copied               cterm=bold    ctermfg=46     ctermbg=235    " Copied files
+hi Cut                  cterm=bold    ctermfg=208    ctermbg=235    " Cut files
+hi Filtered             cterm=bold    ctermfg=245    ctermbg=236    " Filtered files
+
+" Cursor and visual modes
+hi Visual               cterm=bold    ctermfg=none   ctermbg=239    " Visual selection
+hi CursorLine           cterm=none    ctermfg=none   ctermbg=236    " Cursor line
+hi ColorColumn          cterm=none    ctermfg=none   ctermbg=236    " Color column
+hi LineNr               cterm=none    ctermfg=241    ctermbg=235    " Line numbers
