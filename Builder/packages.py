@@ -82,6 +82,7 @@ BASE_PACKAGES = [
     "gnome-disk-utility",  # Просмотр и редактирование дисков
     "vifm", # консольный файловый менеджер
     "sshfs", # передачай файлов по ssh
+    "thunderbird", # почтовый клиент
 ]
 
 DEV_PACKAGES = [
