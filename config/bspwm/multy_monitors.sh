@@ -77,8 +77,8 @@ main() {
 
         local desktop_num=1
         for monitor in "${monitors[@]}"; do
-            bspc monitor "$monitor" -d $desktop_num $((desktop_num+1)) $((desktop_num+2))
-            desktop_num=$((desktop_num+3))
+		bspc monitor "$monitor" -d $desktop_num $((desktop_num+1)) $((desktop_num+2)) $((desktop_num+3))
+            desktop_num=$((desktop_num+4))
         done
 
     else
@@ -92,7 +92,7 @@ main() {
         sleep 1
 
         bspc monitor "$monitor" -r all 2>/dev/null || true
-        bspc monitor "$monitor" -d 1 2 3 4 5 6
+        bspc monitor "$monitor" -d 1 2 3 4 5 6 7 8
     fi
 
     # Настройки курсора
