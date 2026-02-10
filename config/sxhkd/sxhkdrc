@@ -43,8 +43,11 @@ super + shift + {f,n,p,t,c,i,q,k,e,s}
 	setxkbmap -layout us; alacritty -e sh $HOME/bin/timer}
     
 super + shift +l 
-	sh $HOME/bin/screen-lock
-
+# For PC
+    sh $HOME/bin/screen-lock
+# For Notebook
+   # sh $HOME/bin/screen-lock & sleep 0.2 & xset dpms
+ 
 super + shift +x
 	sh $HOME/bin/xcolor-pick
 
