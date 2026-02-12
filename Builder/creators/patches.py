@@ -17,7 +17,7 @@ class PatchSystemBugs:
 
     @staticmethod
     def __make_fish_the_default():
-        os.system("sudo chsh -s /usr/bin/fish")
+        os.system("chsh -s /usr/bin/fish")
 
     @staticmethod
     def __assign_permissions_to_configs():
@@ -27,5 +27,5 @@ class PatchSystemBugs:
         os.system("usermod -aG video $USER")
     @staticmethod
     def __new_passwor_for_user():
-        os.system("passwd")
+        os.system("passwd $USER")
 
