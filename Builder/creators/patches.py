@@ -16,7 +16,7 @@ class PatchSystemBugs:
 
     @staticmethod
     def __make_fish_the_default():
-        os.system("chsh -s /usr/bin/fish")
+        os.system("sudo chsh -s /usr/bin/fish")
 
     @staticmethod
     def __assign_permissions_to_configs():
