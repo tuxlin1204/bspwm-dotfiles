@@ -28,6 +28,10 @@ super + space
 super + {a,x}
     {setxkbmap -layout us;rofi -m -1 -show drun,setxkbmap -layout us; sh $HOME/bin/powermenu}
 
+# Launch Up Apps
+super + s
+    rofi -show window
+
 # Launch Applications
 super + shift + {f,n,p,t,c,i,q,k,e,s}
 	{firefox, \
