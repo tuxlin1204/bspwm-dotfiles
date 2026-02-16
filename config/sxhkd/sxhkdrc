@@ -98,6 +98,16 @@ super + {q,ctrl + q,w}
 # Change focus to next window, including floating window
 alt + {_,shift + }Tab
     bspc node -f {next.local,prev.local}
+
+
+# split horizontal
+super + n
+    bspc node -p south
+
+# split vertical
+super + v
+    bspc node -p east
+
  
 #
 # focus/swap
