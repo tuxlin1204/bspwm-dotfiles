@@ -83,6 +83,10 @@ BASE_PACKAGES = [
     "vifm", # консольный файловый менеджер
     "sshfs", # передачай файлов по ssh
     "thunderbird", # почтовый клиент
+    # "blueman", # Bluetooth Manager
+    "ntfs-3g", # Монтирование NTFS дисков
+    "cifs-utils", # SMB шары Windows машин
+    "arp-scan", # Сканирование сети
 ]
 
 DEV_PACKAGES = [
