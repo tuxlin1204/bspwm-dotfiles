@@ -7,7 +7,7 @@ class AurBuilder:
     def build():
         os.system("git -C /tmp clone https://aur.archlinux.org/yay.git")
         os.system("cd /tmp/yay && sudo -v && makepkg -si --noconfirm")
-        
+        os.system("cd /tmp/yay && makepkg -si --noconfirm")   
 
 class FirefoxCustomize:
     @staticmethod
@@ -20,7 +20,7 @@ class ThoriumBrowser:
     @staticmethod
     def build():
         os.system("git -C /tmp clone https://aur.archlinux.org/thorium-browser-bin.git")
-        os.system("cd /tmp/thorium-browser-bin && sudo -v && makepkg -si --noconfirm")
+        os.system("cd /tmp/thorium-browser-bin && makepkg -si --noconfirm")
 
 
 class SddmTheme:
