@@ -83,7 +83,7 @@ BASE_PACKAGES = [
     "vifm", # консольный файловый менеджер
     "sshfs", # передачай файлов по ssh
     "thunderbird", # почтовый клиент
-    # "blueman", # Bluetooth Manager
+    "blueman", # Bluetooth Manager
     "ntfs-3g", # Монтирование NTFS дисков
     "cifs-utils", # SMB шары Windows машин
     "arp-scan", # Сканирование сети
@@ -137,6 +137,7 @@ DEV_PACKAGES = [
     "cloc",  # Посчитать количество строк кода
     "hexyl",  # Hex дампер
     "remmina freerdp", # RDP клиент
+    "steam", # Steam
 
 ]
 
@@ -152,5 +153,6 @@ AUR_PACKAGES = [
     "rofi-bluetooth-git",  # Управление bluetooth в rofi
     #"anki",  # Программа для запоминания материала через карточки
     "light",  # TODO: Нужен для управления яркостью amd (bin/brightness)
+    "winbox", # WinBox для настройки Mikrotik
 ]
 
