@@ -49,7 +49,9 @@ bspc rule -a xfreerdp:xfreerdp desktop='^3' follow=on
 bspc rule -a org.mozilla.Thunderbird desktop='^4' follow=on
 bspc rule -a obsidian desktop='^5' follow=on
 bspc rule -a org.telegram.desktop desktop='^6' follow=on
-bspc rule -a thorium-browser desktop='^7' follow=on
+bspc rule -a Thorium-browser desktop='^7' follow=on
+bspc rule -a cava desktop='^7' follow=on
+
 # start resources
 xrdb merge ~/.Xresources
 
@@ -70,6 +72,7 @@ pgrep -x redshift > /dev/null || redshift &
 picom --config $HOME/.config/bspwm/picom_configurations/1.conf &
 
 # == autostart ==
-pkill flameshot; flameshot & alacritty & firefox & obsidian & thunderbird & keepassxc
+pkill flameshot; flameshot & alacritty & firefox & obsidian & thunderbird & keepassxc & thorium-browser & alacritty --class cava -e cava
+
 # run cursor tracker
 #pkill cursor_tracker ; ~/bin/cursor_tracker.sh
