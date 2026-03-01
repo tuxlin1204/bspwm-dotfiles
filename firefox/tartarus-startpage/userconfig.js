@@ -97,7 +97,7 @@ const default_config = {
             },
             {
               name: "proxmox",
-              url: "http://192.168.1.35/",
+              url: "http://192.168.0.158:8006/",
               icon: "xbox-x",
               icon_color: "#e78a4e",
             },
