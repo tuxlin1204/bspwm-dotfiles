@@ -136,8 +136,9 @@ DEV_PACKAGES = [
     "ipython",  # Интерактивный режим Python
     "cloc",  # Посчитать количество строк кода
     "hexyl",  # Hex дампер
-    "remmina freerdp", # RDP клиент
+   # "remmina freerdp", # RDP клиент
     "steam", # Steam
+    "qbittorrent", # Torrent клиент
 
 ]
 
