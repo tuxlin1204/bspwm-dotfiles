@@ -7,7 +7,7 @@ After=network.target
 
 [Service]
 
-User=admin
+User=root
 
 WorkingDirectory=/etc/firefox/tartarus-startpage
 
