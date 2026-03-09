@@ -1,4 +1,10 @@
+-- === LuaRocks 5.1 paths ===
+local home = os.getenv("HOME")
+local rocks_path = home .. "/.luarocks"
 
+package.path  = package.path  .. ";" .. rocks_path .. "/share/lua/5.1/?.lua"
+package.path  = package.path  .. ";" .. rocks_path .. "/share/lua/5.1/?/init.lua"
+package.cpath = package.cpath .. ";" .. rocks_path .. "/lib/lua/5.1/?.so"
 -- Basic
 require('core.plugins')
 require('core.mappings')
@@ -8,7 +14,7 @@ require('core.configs')
 -- Plugins
 require('plugins.nvim-tree')
 require('plugins.treesitter')
-require('plugins.lsp')
+-- require('plugins.lsp')
 require('plugins.cmp')
 require('plugins.mason')
 require('plugins.telescope')

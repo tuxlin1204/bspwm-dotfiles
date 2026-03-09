@@ -1,3 +1,3 @@
 #!/bin/bash
 
-curl "https://wttr.in/Berlin"
+curl "https://wttr.in/Moscow"
