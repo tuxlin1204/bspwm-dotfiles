@@ -25,8 +25,8 @@ class UserInterface:
         print("1) Install everything? [Y/n]: ", end="")
         install_all = UserInterface.is_verify_response(input())
 
-    if install_all:
-        return [True, True, True, True]
+        if install_all:
+            return [True, True, True, True]
 
         print("2) Install all dotfiles? [Y/n]: ", end="")
         option_1 = UserInterface.is_verify_response(input())
