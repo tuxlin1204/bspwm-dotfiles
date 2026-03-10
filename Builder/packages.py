@@ -139,6 +139,7 @@ DEV_PACKAGES = [
    # "remmina freerdp", # RDP клиент
     "steam", # Steam
     "qbittorrent", # Torrent клиент
+    "luarocks", # зависимости neovim
 
 ]
 

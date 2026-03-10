@@ -37,3 +37,10 @@ class SddmTheme:
         os.system('echo \'[Theme]\nCurrent=sddm-astronaut-theme\' | sudo tee /etc/sddm.conf > /dev/null')
 
         os.system('echo \'[General]\nInputMethod=qtvirtualkeyboard\' | sudo tee /etc/sddm.conf.d/virtualkbd.conf > /dev/null')
+
+class NeoVim:
+    @staticmethod
+    def build():
+        os.system("sudo luarocks install dkjson --lua-version=5.1")
+
+
