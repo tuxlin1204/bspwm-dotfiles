@@ -13,7 +13,7 @@ class FirefoxCustomize:
     def build():
         os.system("timeout 10 firefox --headless")
         os.system("sh firefox/install.sh")
-        os.system("mkdir -p /etc/firefox/")
+        os.system("sudo mkdir -p /etc/firefox/")
         os.system("sudo cp -r firefox/tartarus-startpage/ /etc/")
         os.system("sudo cp -r firefox/service/* /etc/systemd/system/")
         os.system("sudo systemctl daemon-reload")
