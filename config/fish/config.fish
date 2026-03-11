@@ -6,6 +6,8 @@ alias n="nvim"
 alias m="micro"
 alias cat="bat"
 alias feh="feh --scale-down"
+alias ls="eza --icons --group-directories-first"
+
 
 alias reflector_update="sudo reflector --latest 5 --sort rate --save /etc/pacman.d/mirrorlist"
 

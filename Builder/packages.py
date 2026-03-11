@@ -4,6 +4,7 @@ BASE_PACKAGES = [
     "lsd",  # Расширенная версия ls
     "alacritty",  # Эмулятор терминала
     "bat",  # Улучшенная версия cat
+    "eza",  # Улучшенная версия ls
     "evince",  # Читалка PDF
     "xdotool",  # Dependency for ~/bin/cursor_tracker.sh
     "mesa", "lib32-mesa", "xf86-video-nouveau", "xf86-video-intel", "vulkan-intel"  # Necessary drivers
