@@ -1,0 +1,30 @@
+" Catppuccin Mocha Theme for vifm
+" Author: Drian @xfdrian
+" Based on: https://github.com/catppuccin/catppuccin
+
+highlight clear
+
+" Window and UI Elements
+highlight Win             cterm=none ctermfg=default ctermbg=none
+highlight TopLine         cterm=none ctermfg=cyan ctermbg=none
+highlight TopLineSel      cterm=none ctermfg=magenta ctermbg=none
+highlight StatusLine      cterm=none ctermfg=blue ctermbg=none
+highlight Border          cterm=none ctermfg=blue ctermbg=none
+
+" Selection and Cursor
+highlight Selected        cterm=bold ctermfg=magenta ctermbg=default
+highlight CurrLine        cterm=bold ctermfg=254 ctermbg=099
+
+" Command Line and Messages
+highlight WildMenu        cterm=none,reverse ctermfg=blue ctermbg=236
+highlight CmdLine         cterm=none ctermfg=252 ctermbg=235
+highlight ErrorMsg        cterm=none ctermfg=red ctermbg=black
+
+" File Types
+highlight Directory       cterm=none ctermfg=blue ctermbg=default
+highlight Link            cterm=none ctermfg=cyan ctermbg=default
+highlight BrokenLink      cterm=none ctermfg=red ctermbg=default
+highlight Socket          cterm=none ctermfg=magenta ctermbg=black
+highlight Device          cterm=none ctermfg=red ctermbg=default
+highlight Fifo            cterm=none ctermfg=yellow ctermbg=black
+highlight Executable      cterm=none ctermfg=green ctermbg=default
