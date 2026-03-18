@@ -43,4 +43,12 @@ class NeoVim:
     def build():
         os.system("sudo luarocks install dkjson --lua-version=5.1")
 
+class Tmux:
+    @staticmethod
+    def build():
+        os.system("git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm")
+        os.system("git clone -b v2.1.3 https://github.com/catppuccin/tmux.git ~/.config/tmux/plugins/tmux-catppuccin/")
+        os.system("~/.config/tmux/plugins/tpm/bin/install_plugins")
+        os.system("tmux source-file ~/.config/tmux/tmux.conf")
+
 

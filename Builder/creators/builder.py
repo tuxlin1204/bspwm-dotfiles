@@ -2,7 +2,7 @@ import os
 import packages
 
 from logger import Logger, LoggerStatus
-from creators.software import AurBuilder, FirefoxCustomize, ThoriumBrowser, SddmTheme, NeoVim
+from creators.software import AurBuilder, FirefoxCustomize, ThoriumBrowser, SddmTheme, NeoVim, Tmux
 from creators.patches import PatchSystemBugs
 from creators.daemons import Daemons
 from creators.grubbootloader import GrubTheme
@@ -18,10 +18,11 @@ class SystemConfiguration:
         if args[3]: SystemConfiguration.__start_option_4()
 
         Daemons.enable_all_daemons()
-        PatchSystemBugs.enable_all_patches()
         GrubTheme.build()
         SddmTheme.build()
         NeoVim.build()
+        Tmux.build()
+        PatchSystemBugs.enable_all_patches()
 
     @staticmethod
     def __start_option_1():
