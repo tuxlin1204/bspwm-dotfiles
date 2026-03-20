@@ -20,6 +20,11 @@ class UserInterface:
         else:
             return False
 
+    @staticmethod
+    def get_params():
+        print("1) Install everything? [Y/n]: ", end="")
+        install_all = UserInterface.is_verify_response(input())
+
         if install_all:
             return [True, True, True, True]
 
