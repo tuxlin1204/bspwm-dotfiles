@@ -20,6 +20,19 @@ class UserInterface:
         else:
             return False
 
+# 🔥 НОВОЕ: проверка дисков
+    extra_disks = DiskUtils.get_extra_partitions()
+
+    if extra_disks:
+        print("\nDetected extra disks:")
+        for d in extra_disks:
+            print(" ", d)
+
+        print(" Mount extra disks? [Y/n] ", end="")
+        option_5 = UserInterface.is_verify_response(input())
+
+return [option_5]
+
     @staticmethod
     def get_params():
         print("1) Install everything? [Y/n]: ", end="")
@@ -41,17 +54,6 @@ class UserInterface:
         option_4 = UserInterface.is_verify_response(input())
 
 
-# 🔥 НОВОЕ: проверка дисков
-    extra_disks = DiskUtils.get_extra_partitions()
-
-    if extra_disks:
-        print("\nDetected extra disks:")
-        for d in extra_disks:
-            print(" ", d)
-
-        print("6) Mount extra disks? [Y/n] ", end="")
-        option_5 = UserInterface.is_verify_response(input())
 
 
-
-        return [option_1, option_2, option_3, option_4, option_5]
+        return [option_1, option_2, option_3, option_4]
