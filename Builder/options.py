@@ -20,25 +20,8 @@ class UserInterface:
         else:
             return False
 
-    @staticmethod
-    def get_params():
-        # 🔥 Сначала проверяем дополнительные диски
-        extra_disks = DiskUtils.get_extra_disks()
-        if extra_disks:
-            print("\nDetected extra disks:")
-            for d in extra_disks:
-                print(" ", d)
-            print(" Mount extra disks? [Y/n] ", end="")
-            option_5 = UserInterface.is_verify_response(input())
-        else:
-            option_5 = False  # если дисков нет, пропускаем
-
-        # Далее стандартное меню
-        print("1) Install everything? [Y/n]: ", end="")
-        install_all = UserInterface.is_verify_response(input())
-
         if install_all:
-            return [True, True, True, True, option_5]
+            return [True, True, True, True]
 
         print("2) Install all dotfiles? [Y/n]: ", end="")
         option_1 = UserInterface.is_verify_response(input())
@@ -52,5 +35,5 @@ class UserInterface:
         print("5) Install BSPWM Dependencies? [Y/n] ", end="")
         option_4 = UserInterface.is_verify_response(input())
 
-        # option_5 добавляется последним
-        return [option_1, option_2, option_3, option_4, option_5]
+        
+        return [option_1, option_2, option_3, option_4]
