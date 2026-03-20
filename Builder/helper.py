@@ -5,46 +5,52 @@ class DiskUtils:
     @staticmethod
     def get_extra_disks():
         """
-        Возвращает список дисков, которые не используются системой
-        (не системные и не swap)
+        Возвращает список дополнительных дисков, которые не используются системой.
+        Системные диски (с /, /boot, /home) и zram/swap исключаются.
         """
-        # Получаем все устройства и их монтирования
         result = subprocess.check_output(
             "lsblk -lpno NAME,TYPE,MOUNTPOINT",
             shell=True
         ).decode().strip().split("\n")
 
-        # Словарь: диск → его разделы с монтированием
         disks = {}
-        for line in result:
-            parts = line.split()
-            if len(parts) < 2:
-                continue
-            name = parts[0]
-            type_ = parts[1]
-            mount = parts[2] if len(parts) > 2 else ""
+        partitions = []
 
-            # Игнорируем swap
-            if type_.lower() == "swap":
+        for line in result:
+            cols = line.split()
+            if len(cols) < 2:
+                continue
+            name, type_ = cols[0], cols[1]
+            mount = cols[2] if len(cols) > 2 else ""
+
+            # пропускаем swap сразу
+            if type_ == "swap":
                 continue
 
             if type_ == "disk":
                 disks[name] = []
             elif type_ == "part":
-                # Определяем родительский диск
-                parent_disk = ''.join([c for c in name if not c.isdigit()]).rstrip('/')
-                if parent_disk in disks:
-                    disks[parent_disk].append(mount)
+                partitions.append((name, mount))
+
+        # сопоставляем разделы с дисками
+        for part_name, mount in partitions:
+            # получаем родительский диск через lsblk PATH
+            disk_path = subprocess.check_output(
+                f"lsblk -no PKNAME {part_name}",
+                shell=True
+            ).decode().strip()
+            disk_name = "/dev/" + disk_path
+            if disk_name in disks:
+                disks[disk_name].append(mount)
 
         extra = []
         for disk, mounts in disks.items():
-            # Если на диске есть системные монтирования → пропускаем
+            # пропускаем системные диски
             if any(m in ["/", "/boot", "/home"] for m in mounts):
                 continue
-            # Если это zram (swap) → пропускаем
+            # пропускаем zram
             if "zram" in disk.lower():
                 continue
-            # иначе диск дополнительный
             extra.append(disk)
 
         return extra
