@@ -1,6 +1,6 @@
 import os
 from creators.builder import SystemConfiguration
-
+from helper import DiskUtils
 
 class UserInterface:
     @staticmethod
@@ -40,4 +40,18 @@ class UserInterface:
         print("5) Install BSPWM Dependencies? [Y/n] ", end="")
         option_4 = UserInterface.is_verify_response(input())
 
-        return [option_1, option_2, option_3, option_4]
+
+# 🔥 НОВОЕ: проверка дисков
+    extra_disks = DiskUtils.get_extra_partitions()
+
+    if extra_disks:
+        print("\nDetected extra disks:")
+        for d in extra_disks:
+            print(" ", d)
+
+        print("6) Mount extra disks? [Y/n] ", end="")
+        option_5 = UserInterface.is_verify_response(input())
+
+
+
+        return [option_1, option_2, option_3, option_4, option_5]
