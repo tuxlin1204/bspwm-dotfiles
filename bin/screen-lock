@@ -8,6 +8,9 @@ verify=7aa2f7
 lock_image="$HOME/Images/system/lock_screen.png"
 temp_image="/tmp/lock_screen_scaled.png"
 
+# ПАУЗА уведомлений
+dunstctl set-paused true
+
 # Полная геометрия X11 (оба монитора)
 root_res=$(xdpyinfo | awk '/dimensions/{print $2}')
 echo "Root resolution: $root_res"
@@ -56,3 +59,6 @@ i3lock -n --force-clock \
 --verif-size=23 --greeter-size=23 --wrong-size=23 \
 --date-color=$date --time-color=$date --greeter-color=$fg --wrong-color=$wrong --verif-color=$verify \
 --screen=0
+
+# ВОЗВРАТ уведомлений
+dunstctl set-paused false
