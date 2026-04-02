@@ -130,6 +130,18 @@ const default_config = {
               icon: "letter-c",
               icon_color: "#ea6962",
             },
+        {
+              name: "modplus",
+              url: "https://modplus.org/ru/licenseserverlogin",
+              icon: "letter-m",
+              icon_color: "#7daea3",
+            },
+        {
+              name: "futurebim",
+              url: "https://futurebim.ru/ru/account/login",
+              icon: "hourglass",
+              icon_color: "#a9b665",
+            },
 
           ],
         },
