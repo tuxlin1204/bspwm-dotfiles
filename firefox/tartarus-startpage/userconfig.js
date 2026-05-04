@@ -25,7 +25,7 @@ const default_config = {
   },
   disabled: [],
   localIcons: false,
-  fastlink: "https://chat.openai.com/",
+  fastlink: "https://claude.ai/",
   openLastVisitedTab: true,
   tabs: [
 
@@ -126,13 +126,13 @@ const default_config = {
             },
 	    {
               name: "1c",
-              url: "https://srg-consulting.1c-cabinet.ru/auth/v2/server/signin?app_req_id=d83655c3-8860-420d-a6d3-f2c3285c3427",
+              url: "https://srg-consulting.1c-cabinet.ru/applications/468-305?login_hint=РоманенкоРВ",
               icon: "letter-c",
               icon_color: "#ea6962",
             },
         {
               name: "modplus",
-              url: "https://modplus.org/ru/licenseserverlogin",
+              url: "https://lsm.modplus.org/",
               icon: "letter-m",
               icon_color: "#7daea3",
             },
