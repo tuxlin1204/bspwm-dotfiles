@@ -88,6 +88,7 @@ BASE_PACKAGES = [
     "ntfs-3g", # Монтирование NTFS дисков
     "cifs-utils", # SMB шары Windows машин
     "arp-scan", # Сканирование сети
+    "duf", # Консольный анализатор состояния дисков
 ]
 
 DEV_PACKAGES = [
