@@ -48,7 +48,8 @@ super + shift + {f,n,p,t,c,i,q,k,e,s}
     
 super + shift +l 
 # For PC
-    sh $HOME/bin/screen-lock
+#    sh $HOME/bin/screen-lock
+  shift $HOME/.config/i3/i3-lock.sh
 # For Notebook
    # sh $HOME/bin/screen-lock & sleep 0.2 & xset dpms
  
