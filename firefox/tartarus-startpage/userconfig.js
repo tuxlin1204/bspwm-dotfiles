@@ -244,9 +244,9 @@ const default_config = {
             icon_color: "#a9b665",
           },
           {
-            name: "twitter",
-            url: "https://twitter.com/home",
-            icon: "brand-twitter-filled",
+            name: "telegram",
+	    url: "https://web.telegram.org/",
+            icon: "brand-telegram",
             icon_color: "#7daea3",
           },
           {
