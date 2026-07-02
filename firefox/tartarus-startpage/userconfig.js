@@ -142,6 +142,13 @@ const default_config = {
               icon: "hourglass",
               icon_color: "#a9b665",
             },
+	{
+              name: "bim-starter",
+              url: "https://bim-starter.com/cabinet",
+              icon: "brand-booking",
+              icon_color: "#d3869b",
+            },
+
 
           ],
         },
