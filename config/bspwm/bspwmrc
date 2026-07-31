@@ -74,7 +74,7 @@ pgrep -x redshift > /dev/null || redshift &
 picom --config $HOME/.config/bspwm/picom_configurations/1.conf &
 
 # == autostart ==
-pkill flameshot; flameshot & alacritty & firefox & obsidian & thunderbird & keepassxc 
+pkill flameshot; flameshot & alacritty & firefox & obsidian & thunderbird
 # & thorium-browser
 # & alacritty --class cava -e cava
 # run cursor tracker

@@ -89,6 +89,10 @@ BASE_PACKAGES = [
     "cifs-utils", # SMB шары Windows машин
     "arp-scan", # Сканирование сети
     "duf", # Консольный анализатор состояния дисков
+    "pass", # Менеджер паролей
+    "gnupg", # Программа шифрования
+    "pinentry-gtk", # Окно ввода пароля Pass
+    "browserpass-firefox", # Интеграция Pass в Firefox 
 ]
 
 DEV_PACKAGES = [
