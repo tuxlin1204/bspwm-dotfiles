@@ -25,7 +25,7 @@ const default_config = {
   },
   disabled: [],
   localIcons: false,
-  fastlink: "https://claude.ai/",
+  fastlink: "https://gemini.google.com",
   openLastVisitedTab: true,
   tabs: [
 
@@ -142,12 +142,31 @@ const default_config = {
               icon: "hourglass",
               icon_color: "#a9b665",
             },
-	{
+{
               name: "bim-starter",
               url: "https://bim-starter.com/cabinet",
               icon: "brand-booking",
               icon_color: "#d3869b",
             },
+{
+              name: "rs20",
+              url: "http://192.168.1.70/RevitServerAdmin2020",
+              icon: "letter-r",
+              icon_color: "#7daea3",
+            },
+{
+              name: "rs22",
+              url: "http://192.168.1.77/RevitServerAdmin2022",
+              icon: "letter-r",
+              icon_color: "#7daea3",
+            },
+{
+              name: "rs24",
+              url: "http://192.168.1.26/RevitServerAdmin2024",
+              icon: "letter-r",
+              icon_color: "#7daea3",
+            },
+
 
 
           ],
