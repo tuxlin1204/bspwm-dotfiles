@@ -229,7 +229,7 @@ class Statusbar extends Component {
         <div id="tabs">
             <cols>
                 <button class="+ fastlink">
-                  <img class="fastlink-icon" src="src/img/gemini.png"/>
+                  <img class="fastlink-icon" src="src/img/perplexity-ai-icon.svg"/>
                 </button>
                 <ul class="- indicator"></ul>
                 <div class="+ widgets col-end">
