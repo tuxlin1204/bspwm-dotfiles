@@ -25,7 +25,7 @@ const default_config = {
   },
   disabled: [],
   localIcons: false,
-  fastlink: "https://gemini.google.com",
+  fastlink: "https://www.perplexity.ai/",
   openLastVisitedTab: true,
   tabs: [
 

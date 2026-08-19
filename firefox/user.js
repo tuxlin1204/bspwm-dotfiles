@@ -13,3 +13,6 @@ user_pref("browser.newtabpage.activity-stream.default.sites", "");
 
 // Integrated calculator at urlbar
 user_pref("browser.urlbar.suggest.calculator", true);
+
+// full Screen Window
+user_pref("full-screen-api.ignore-widgets", true")
