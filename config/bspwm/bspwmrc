@@ -12,6 +12,8 @@ pgrep -x sxhkd > /dev/null || sxhkd &
 
 # Multiple monitor support
 sh $HOME/.config/bspwm/multy_monitors.sh
+# Multiple monitor support DVI Primary
+#sh $HOME/.config/bspwm/multy_monitors_DVI_Primary.sh
 
 #bspc monitor HDMI-0 -d 1 2 3
 #bspc monitor DVI-0 -d 4 5 6 

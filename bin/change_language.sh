@@ -1,12 +1,11 @@
 #!/bin/bash
 
-CURRENT_LAYOUT=$(xset -q|grep LED| awk '{ print $10 }')
+CURRENT_LAYOUT=$(setxkbmap -query | awk '/layout/ {print $2}')
 
-setxkbmap -layout us,ru -option "grp:win_space_toggle"
-if [ "$CURRENT_LAYOUT" = "00000000" ]; then
-	notify-send "Lang: US" -t 700
-fi
-
-if [ "$CURRENT_LAYOUT" = "00001000" ]; then
+if [ "$CURRENT_LAYOUT" = "us" ]; then
+    setxkbmap -layout ru
     notify-send "Lang: RU" -t 700
+else
+    setxkbmap -layout us
+    notify-send "Lang: US" -t 700
 fi
