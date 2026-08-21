@@ -92,7 +92,8 @@ BASE_PACKAGES = [
     "pass", # Менеджер паролей
     "gnupg", # Программа шифрования
     "pinentry-gtk", # Окно ввода пароля Pass
-    "browserpass-firefox", # Интеграция Pass в Firefox 
+    "browserpass-firefox", # Интеграция Pass в firefox
+    "xdotool", # Для смены раскладки по горячим клавишам
 ]
 
 DEV_PACKAGES = [
